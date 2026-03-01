@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Volta Partners — Development Finance Advisory</title>
+<meta name="description" content="Volta Partners helps development finance institutions, investors, and project sponsors prepare, structure, and close investments across Africa and emerging markets.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ========== BRAND TOKENS ========== */
+:root {
+  --color-charcoal: #37515F;
+  --color-sea-green: #09814A;
+  --color-cerulean: #0078A1;
+  --color-sunglow: #FFCA3A;
+  --color-cream: #E7EBC5;
+  --color-white: #FFFFFF;
+  --color-gray-light: #F5F5F5;
+  --color-black: #000000;
+  --color-dark: #1a2a33;
+  --font-logo: 'Archivo Black', sans-serif;
+  --font-heading: 'Archivo', -apple-system, system-ui, sans-serif;
+  --font-body: 'Inter', -apple-system, system-ui, sans-serif;
+}
+
+/* ========== RESET ========== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-body); font-weight: 400; color: var(--color-charcoal); background: var(--color-white); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+h1, h2 { font-family: var(--font-heading); font-weight: 700; color: var(--color-charcoal); letter-spacing: -0.02em; }
+h3, h4 { font-family: var(--font-heading); font-weight: 600; color: var(--color-charcoal); }
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; }
+
+/* ========== LAYOUT ========== */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+@media (min-width: 1024px) { .container { padding: 0 48px; } }
+section { padding: 96px 0; }
+@media (max-width: 768px) { section { padding: 64px 0; } }
+
+/* ========== NAVIGATION ========== */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: var(--color-charcoal);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+nav.scrolled { background: rgba(55,81,95,0.97); box-shadow: 0 2px 20px rgba(0,0,0,0.15); }
+.nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+@media (min-width: 1024px) { .nav-inner { height: 76px; } }
+.logo-mark { font-family: var(--font-logo); font-weight: 900; font-size: 22px; color: var(--color-white); letter-spacing: -0.03em; }
+.logo-text { font-family: var(--font-heading); font-weight: 600; color: var(--color-white); font-size: 17px; margin-left: 10px; letter-spacing: -0.01em; }
+.nav-links { display: none; align-items: center; gap: 32px; }
+@media (min-width: 1024px) { .nav-links { display: flex; } }
+.nav-links a { color: rgba(255,255,255,0.7); font-family: var(--font-heading); font-weight: 500; font-size: 15px; transition: color 0.2s; }
+.nav-links a:hover { color: var(--color-white); }
+.nav-cta { background: var(--color-sea-green); color: var(--color-white) !important; padding: 10px 24px; border-radius: 6px; font-weight: 600; transition: background 0.2s, transform 0.2s; }
+.nav-cta:hover { background: #07703f; transform: translateY(-1px); }
+.menu-toggle { display: block; background: none; border: none; cursor: pointer; color: var(--color-white); }
+@media (min-width: 1024px) { .menu-toggle { display: none; } }
+.mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+.mobile-menu.open { max-height: 400px; }
+.mobile-menu a { display: block; color: rgba(255,255,255,0.7); font-family: var(--font-heading); font-weight: 500; font-size: 15px; padding: 12px 0; transition: color 0.2s; }
+.mobile-menu a:hover { color: var(--color-white); }
+
+/* ========== HERO ========== */
+.hero {
+  background: var(--color-charcoal);
+  padding: 140px 0 80px;
+  position: relative; overflow: hidden;
+}
+@media (min-width: 1024px) { .hero { padding: 180px 0 120px; } }
+.hero::before {
+  content: ''; position: absolute; inset: 0; opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M30 0v60M0 30h60' stroke='white' stroke-width='0.5'/%3E%3C/svg%3E");
+}
+.hero-content { position: relative; max-width: 720px; }
+.hero-label { display: flex; align-items: center; gap: 12px; margin-bottom: 32px; }
+.accent-line { width: 48px; height: 3px; background: var(--color-sea-green); }
+.hero-label span { color: var(--color-sunglow); font-family: var(--font-heading); font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; }
+.hero h1 { color: var(--color-white); font-size: 2.5rem; line-height: 1.15; margin-bottom: 24px; }
+@media (min-width: 1024px) { .hero h1 { font-size: 3.5rem; } }
+.hero p { color: rgba(255,255,255,0.6); font-size: 1.1rem; line-height: 1.7; margin-bottom: 40px; max-width: 600px; }
+.hero-buttons { display: flex; flex-wrap: wrap; gap: 16px; }
+.btn-primary { display: inline-block; background: var(--color-sea-green); color: var(--color-white); padding: 14px 32px; font-family: var(--font-heading); font-weight: 600; font-size: 15px; border-radius: 6px; transition: all 0.3s; border: none; cursor: pointer; }
+.btn-primary:hover { background: #07703f; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(9,129,74,0.3); }
+.btn-outline { display: inline-block; border: 1.5px solid var(--color-sea-green); color: var(--color-sea-green); padding: 13px 32px; font-family: var(--font-heading); font-weight: 600; font-size: 15px; border-radius: 6px; transition: all 0.3s; background: transparent; }
+.btn-outline:hover { background: var(--color-sea-green); color: var(--color-white); }
+.hero .btn-outline { border-color: rgba(255,255,255,0.3); color: rgba(255,255,255,0.8); }
+.hero .btn-outline:hover { border-color: var(--color-white); background: rgba(255,255,255,0.1); color: var(--color-white); }
+
+/* Stats bar */
+.stats-bar { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; margin-top: 80px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); position: relative; }
+@media (min-width: 1024px) { .stats-bar { grid-template-columns: repeat(4, 1fr); } }
+.stat-num { font-family: var(--font-heading); font-weight: 700; font-size: 2.8rem; line-height: 1; color: var(--color-sea-green); }
+.stat-label { color: rgba(255,255,255,0.5); font-size: 0.85rem; margin-top: 4px; }
+
+/* ========== TRUSTED BY ========== */
+.trusted { background: var(--color-cream); padding: 48px 0; overflow: hidden; }
+.trusted p { text-align: center; font-family: var(--font-heading); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.14em; color: var(--color-charcoal); opacity: 0.5; margin-bottom: 32px; }
+.logo-track-wrapper { overflow: hidden; }
+.logo-track { display: flex; gap: 48px; animation: marquee 35s linear infinite; }
+@keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+.logo-track span { font-family: var(--font-heading); font-weight: 700; font-size: 14px; white-space: nowrap; color: var(--color-charcoal); opacity: 0.35; transition: opacity 0.3s; }
+.logo-track span:hover { opacity: 0.7; }
+
+/* ========== ABOUT ========== */
+.about { background: var(--color-white); }
+.about-grid { display: grid; gap: 64px; }
+@media (min-width: 1024px) { .about-grid { grid-template-columns: 1fr 1fr; } }
+.section-label { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.section-label span { color: var(--color-sea-green); font-family: var(--font-heading); font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; }
+.about h2 { font-size: 2rem; line-height: 1.2; margin-bottom: 24px; }
+@media (min-width: 1024px) { .about h2 { font-size: 2.5rem; } }
+.about p { color: #5a7a8a; line-height: 1.7; margin-bottom: 20px; }
+.why-box { background: var(--color-gray-light); border-radius: 12px; padding: 32px; }
+@media (min-width: 1024px) { .why-box { padding: 40px; } }
+.why-box h3 { font-size: 1.2rem; margin-bottom: 24px; }
+.why-item { display: flex; gap: 16px; margin-bottom: 20px; }
+.why-item:last-child { margin-bottom: 0; }
+.why-icon { width: 32px; height: 32px; border-radius: 6px; background: rgba(9,129,74,0.1); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+.why-icon svg { width: 16px; height: 16px; color: var(--color-sea-green); }
+.why-item strong { font-family: var(--font-heading); font-weight: 600; font-size: 0.95rem; display: block; margin-bottom: 4px; }
+.why-item .desc { color: #6b8a9a; font-size: 0.875rem; line-height: 1.5; }
+
+/* ========== SERVICES ========== */
+.services { background: var(--color-gray-light); }
+.services .section-header { text-align: center; margin-bottom: 64px; }
+.services .section-header h2 { font-size: 2rem; }
+@media (min-width: 1024px) { .services .section-header h2 { font-size: 2.5rem; } }
+.services .section-header p { color: #6b8a9a; margin-top: 16px; max-width: 600px; margin-left: auto; margin-right: auto; }
+.services-grid { display: grid; gap: 24px; }
+@media (min-width: 1024px) { .services-grid { grid-template-columns: 1fr 1fr; } }
+.service-card { background: var(--color-white); border-radius: 12px; padding: 32px; border-left: 3px solid transparent; transition: all 0.3s; }
+.service-card:hover { border-left-color: var(--color-sea-green); transform: translateX(4px); }
+.service-header { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 16px; }
+.service-icon { width: 48px; height: 48px; border-radius: 10px; background: var(--color-charcoal); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.service-icon svg { width: 24px; height: 24px; color: var(--color-white); }
+.service-card h3 { font-size: 1.15rem; }
+.service-lifecycle { color: var(--color-sea-green); font-family: var(--font-heading); font-size: 0.8rem; font-weight: 500; }
+.service-card > p { color: #5a7a8a; font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px; }
+.pills { display: flex; flex-wrap: wrap; gap: 8px; }
+.pill { background: rgba(9,129,74,0.08); color: var(--color-sea-green); padding: 4px 14px; font-size: 0.8rem; font-weight: 500; border-radius: 999px; }
+
+/* Sectors strip */
+.sectors { background: var(--color-white); border-radius: 12px; padding: 24px 32px; margin-top: 32px; }
+.sectors h4 { font-family: var(--font-heading); font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-charcoal); margin-bottom: 16px; }
+.sector-pills { display: flex; flex-wrap: wrap; gap: 10px; }
+.sector-pill { padding: 8px 16px; background: var(--color-gray-light); border-radius: 6px; font-size: 0.85rem; font-weight: 500; color: #5a7a8a; }
+
+/* ========== EXPERTS ========== */
+.experts { background: var(--color-white); }
+.experts h2 { font-size: 2rem; margin-bottom: 16px; }
+@media (min-width: 1024px) { .experts h2 { font-size: 2.5rem; } }
+.experts > .container > p { color: #6b8a9a; max-width: 600px; margin-bottom: 48px; }
+.experts-grid { display: grid; gap: 24px; }
+@media (min-width: 768px) { .experts-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1024px) { .experts-grid { grid-template-columns: 1fr 1fr 1fr; } }
+.expert-card { background: var(--color-gray-light); border-radius: 12px; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; }
+.expert-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.06); }
+.expert-stripe { height: 4px; }
+.expert-stripe.founder { background: var(--color-sea-green); }
+.expert-stripe.principal { background: var(--color-cerulean); }
+.expert-body { padding: 24px; }
+.expert-avatar { width: 56px; height: 56px; border-radius: 50%; background: var(--color-charcoal); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+.expert-avatar span { color: var(--color-white); font-family: var(--font-heading); font-weight: 700; font-size: 1.1rem; }
+.expert-card h3 { font-size: 1.05rem; margin-bottom: 4px; }
+.expert-role { color: var(--color-sea-green); font-family: var(--font-heading); font-size: 0.8rem; font-weight: 600; margin-bottom: 12px; display: block; }
+.expert-bio { color: #5a7a8a; font-size: 0.875rem; line-height: 1.6; margin-bottom: 16px; }
+.expert-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.expert-tag { font-size: 0.75rem; padding: 4px 10px; background: var(--color-white); border-radius: 4px; color: #5a7a8a; font-weight: 500; }
+
+/* ========== ENGAGEMENTS ========== */
+.engagements { background: var(--color-charcoal); }
+.engagements h2 { color: var(--color-white); font-size: 2rem; margin-bottom: 16px; }
+@media (min-width: 1024px) { .engagements h2 { font-size: 2.5rem; } }
+.engagements > .container > p { color: rgba(255,255,255,0.5); max-width: 600px; margin-bottom: 48px; }
+.engagements .section-label span { color: var(--color-sunglow); }
+.engage-grid { display: grid; gap: 20px; }
+@media (min-width: 768px) { .engage-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1024px) { .engage-grid { grid-template-columns: 1fr 1fr 1fr; } }
+.engage-card { background: rgba(255,255,255,0.05); border-radius: 12px; padding: 24px; position: relative; overflow: hidden; transition: background 0.3s; }
+.engage-card:hover { background: rgba(255,255,255,0.08); }
+.engage-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--color-sea-green), var(--color-cerulean)); transform: scaleX(0); transform-origin: left; transition: transform 0.4s; }
+.engage-card:hover::before { transform: scaleX(1); }
+.engage-pills { display: flex; gap: 8px; margin-bottom: 16px; }
+.engage-pill { background: rgba(9,129,74,0.15); color: var(--color-sea-green); padding: 3px 12px; font-size: 0.75rem; font-weight: 500; border-radius: 999px; }
+.engage-card h3 { color: var(--color-white); font-size: 1.05rem; margin-bottom: 8px; }
+.engage-card > p { color: rgba(255,255,255,0.5); font-size: 0.85rem; line-height: 1.6; margin-bottom: 16px; }
+.engage-metrics { display: flex; flex-wrap: wrap; gap: 12px; font-size: 0.85rem; }
+.engage-metric { color: var(--color-sea-green); font-weight: 600; }
+.engage-divider { color: rgba(255,255,255,0.2); }
+
+/* ========== CONTACT ========== */
+.contact { background: var(--color-white); }
+.contact-grid { display: grid; gap: 64px; }
+@media (min-width: 1024px) { .contact-grid { grid-template-columns: 1fr 1fr; } }
+.contact h2 { font-size: 2rem; line-height: 1.2; margin-bottom: 24px; }
+@media (min-width: 1024px) { .contact h2 { font-size: 2.5rem; } }
+.contact-info-item { display: flex; gap: 16px; margin-bottom: 24px; }
+.contact-icon { width: 40px; height: 40px; border-radius: 8px; background: var(--color-gray-light); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.contact-icon svg { width: 20px; height: 20px; color: var(--color-sea-green); }
+.contact-info-item strong { font-family: var(--font-heading); font-weight: 600; display: block; margin-bottom: 2px; }
+.contact-info-item a { color: var(--color-sea-green); transition: opacity 0.2s; }
+.contact-info-item a:hover { opacity: 0.7; }
+.form-box { background: var(--color-gray-light); border-radius: 12px; padding: 32px; }
+.form-box h3 { font-size: 1.1rem; margin-bottom: 24px; }
+.form-group { margin-bottom: 16px; }
+.form-group label { display: block; font-size: 0.875rem; font-weight: 500; margin-bottom: 6px; color: var(--color-charcoal); }
+.form-group input, .form-group textarea { width: 100%; padding: 12px 16px; border: 1px solid #d1dde3; border-radius: 8px; font-family: var(--font-body); font-size: 0.9rem; color: var(--color-charcoal); background: var(--color-white); outline: none; transition: border-color 0.2s; }
+.form-group input:focus, .form-group textarea:focus { border-color: var(--color-sea-green); }
+.form-group textarea { resize: none; }
+.form-submit { width: 100%; margin-top: 8px; }
+.form-success { display: none; text-align: center; padding: 48px 0; }
+.form-success.show { display: block; }
+.form-success .check { width: 64px; height: 64px; border-radius: 50%; background: rgba(9,129,74,0.1); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
+.form-success .check svg { width: 32px; height: 32px; color: var(--color-sea-green); }
+.form-success h3 { margin-bottom: 8px; }
+.form-success p { color: #6b8a9a; }
+
+/* ========== FOOTER ========== */
+footer { background: var(--color-dark); padding: 48px 0; }
+.footer-inner { display: flex; flex-direction: column; align-items: center; gap: 24px; }
+@media (min-width: 1024px) { .footer-inner { flex-direction: row; justify-content: space-between; } }
+.footer-brand { display: flex; align-items: center; gap: 12px; }
+.footer-logo { font-family: var(--font-logo); font-weight: 900; font-size: 20px; color: var(--color-white); letter-spacing: -0.03em; }
+.footer-brand .sub { color: rgba(255,255,255,0.5); font-size: 0.85rem; margin-left: 4px; }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a { color: rgba(255,255,255,0.5); font-size: 0.875rem; transition: color 0.2s; }
+.footer-links a:hover { color: var(--color-white); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); margin-top: 32px; padding-top: 32px; text-align: center; }
+.footer-bottom p { color: rgba(255,255,255,0.4); font-size: 0.8rem; }
+
+/* ========== ANIMATIONS ========== */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- ===================== NAVIGATION ===================== -->
+<nav id="navbar">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" style="display:flex;align-items:center;">
+        <span class="logo-mark">VP</span>
+        <span class="logo-text">Volta Partners</span>
+      </a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#experts">Experts</a>
+        <a href="#engagements">Engagements</a>
+        <a href="#contact" class="nav-cta">Get in Touch</a>
+      </div>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Menu">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+    <div id="mobile-menu" class="mobile-menu">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#experts">Experts</a>
+      <a href="#engagements">Engagements</a>
+      <a href="#contact">Get in Touch</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-label">
+        <div class="accent-line"></div>
+        <span>Development Finance Advisory</span>
+      </div>
+      <h1>Turning investment ambition<br>into bankable reality.</h1>
+      <p>We help development finance institutions, investors, and project sponsors prepare, structure, and close investments that move Africa forward. From pipeline development to financial close — and everything in between.</p>
+      <div class="hero-buttons">
+        <a href="#services" class="btn-primary">Our Services</a>
+        <a href="#contact" class="btn-outline">Start a Conversation</a>
+      </div>
+    </div>
+    <div class="stats-bar">
+      <div>
+        <div class="stat-num">$12.5B+</div>
+        <div class="stat-label">Capital Enabled</div>
+      </div>
+      <div>
+        <div class="stat-num">23</div>
+        <div class="stat-label">Countries</div>
+      </div>
+      <div>
+        <div class="stat-num">65+</div>
+        <div class="stat-label">Years Combined Experience</div>
+      </div>
+      <div>
+        <div class="stat-num">20+</div>
+        <div class="stat-label">Years in Development Finance</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TRUSTED BY ===================== -->
+<section class="trusted">
+  <div class="container">
+    <p>Our team has worked with and within</p>
+  </div>
+  <div class="logo-track-wrapper">
+    <div class="logo-track">
+      <span>African Development Bank</span><span>IFC</span><span>World Bank</span><span>British International Investment</span><span>Africa Finance Corporation</span><span>Standard Chartered</span><span>Standard Bank</span><span>Simon-Kucher &amp; Partners</span><span>Citigroup</span><span>UBS</span><span>HEC Paris</span><span>Harvard Business School</span><span>Duke Fuqua</span><span>Kellogg</span>
+      <span>African Development Bank</span><span>IFC</span><span>World Bank</span><span>British International Investment</span><span>Africa Finance Corporation</span><span>Standard Chartered</span><span>Standard Bank</span><span>Simon-Kucher &amp; Partners</span><span>Citigroup</span><span>UBS</span><span>HEC Paris</span><span>Harvard Business School</span><span>Duke Fuqua</span><span>Kellogg</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ABOUT ===================== -->
+<section id="about" class="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="reveal">
+        <div class="section-label">
+          <div class="accent-line"></div>
+          <span>About Volta Partners</span>
+        </div>
+        <h2>Built from the inside out.</h2>
+        <p>Volta Partners is a development finance advisory firm that helps investors and project sponsors turn promising opportunities into bankable investments across Africa and emerging markets.</p>
+        <p>What sets us apart is where we come from. Our founding team has worked <em>inside</em> the institutions that approve, structure, and finance Africa's largest investments — the African Development Bank, IFC, the World Bank, and British International Investment. We've sat in the investment committees. We know what it takes to get a project from concept to board approval to financial close.</p>
+        <p>We combine that institutional depth with investment banking execution, management consulting rigour, and on-the-ground knowledge across Francophone and Anglophone Africa. The result: advisory that doesn't just produce reports, but moves capital.</p>
+      </div>
+      <div class="reveal">
+        <div class="why-box">
+          <h3>Why Clients Choose Volta</h3>
+          <div class="why-item">
+            <div class="why-icon"><svg fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zm3.707 6.707a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/></svg></div>
+            <div><strong>Institutional Insider Perspective</strong><div class="desc">We've worked inside the DFIs — not just for them. We understand approval processes, risk frameworks, and what makes an investment committee say yes.</div></div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon"><svg fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zm3.707 6.707a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/></svg></div>
+            <div><strong>Deals, Not Just Decks</strong><div class="desc">With roots in investment banking and project finance, we bring transaction execution capability — financial structuring, modelling, and negotiation to close.</div></div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon"><svg fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zm3.707 6.707a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/></svg></div>
+            <div><strong>Bilingual, Pan-African Reach</strong><div class="desc">Native fluency across Anglophone and Francophone Africa. Paris, Lagos, and Dubai presence.</div></div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon"><svg fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zm3.707 6.707a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/></svg></div>
+            <div><strong>Boutique Agility, Institutional Calibre</strong><div class="desc">Senior principals on every engagement. No junior teams learning on your mandate.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SERVICES ===================== -->
+<section id="services" class="services">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label" style="justify-content:center;">
+        <div class="accent-line"></div>
+        <span>What We Do</span>
+        <div class="accent-line"></div>
+      </div>
+      <h2>Advisory across the investment lifecycle</h2>
+      <p>We work with clients before, during, and after the investment — wherever capital meets opportunity.</p>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-header">
+          <div class="service-icon">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941"/></svg>
+          </div>
+          <div>
+            <h3>Transaction Advisory</h3>
+            <span class="service-lifecycle">During the Deal</span>
+          </div>
+        </div>
+        <p>End-to-end support from origination to financial close. We help investors and sponsors structure, appraise, and execute investments that meet DFI standards and attract co-financing.</p>
+        <div class="pills">
+          <span class="pill">Due Diligence</span><span class="pill">Feasibility Studies</span><span class="pill">Technical Advisory</span><span class="pill">Fundraising Strategy</span><span class="pill">Funds Mobilisation</span>
+        </div>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-header">
+          <div class="service-icon">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5"/></svg>
+          </div>
+          <div>
+            <h3>Pipeline Development</h3>
+            <span class="service-lifecycle">Before the Deal</span>
+          </div>
+        </div>
+        <p>Helping project sponsors and early-stage ventures become investment-ready. We build the commercial case, prepare bankable documentation, and connect sponsors with the right capital sources.</p>
+        <div class="pills">
+          <span class="pill">Investment Readiness</span><span class="pill">Project Preparation</span><span class="pill">Quality at Entry</span><span class="pill">Growth Strategy</span><span class="pill">Business Planning</span>
+        </div>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-header">
+          <div class="service-icon">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+          </div>
+          <div>
+            <h3>Value Creation</h3>
+            <span class="service-lifecycle">After the Deal</span>
+          </div>
+        </div>
+        <p>Maximising returns and impact for investors and portfolio companies. From operational turnarounds to digital transformation — we help investments deliver on their promise.</p>
+        <div class="pills">
+          <span class="pill">Portfolio Turnaround</span><span class="pill">Capacity Building</span><span class="pill">Commercial Excellence</span><span class="pill">Digital Transformation</span>
+        </div>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-header">
+          <div class="service-icon">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"/></svg>
+          </div>
+          <div>
+            <h3>Sustainable Finance</h3>
+            <span class="service-lifecycle">Across the Lifecycle</span>
+          </div>
+        </div>
+        <p>Integrating sustainability into investment decision-making. We design ESG strategies, measure development impact, and structure climate finance instruments that meet institutional standards.</p>
+        <div class="pills">
+          <span class="pill">Results Measurement</span><span class="pill">Climate Assessment</span><span class="pill">Impact Strategy</span><span class="pill">Climate Finance</span><span class="pill">ESG Strategy</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="sectors reveal">
+      <h4>Sector Focus</h4>
+      <div class="sector-pills">
+        <span class="sector-pill">Power &amp; Renewable Energy</span>
+        <span class="sector-pill">Infrastructure &amp; Transport</span>
+        <span class="sector-pill">Financial Services</span>
+        <span class="sector-pill">Digital Economy &amp; Fintech</span>
+        <span class="sector-pill">Agriculture &amp; Food Systems</span>
+        <span class="sector-pill">Industrial &amp; Manufacturing</span>
+        <span class="sector-pill">Climate &amp; Green Investment</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== EXPERTS ===================== -->
+<section id="experts" class="experts">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">
+        <div class="accent-line"></div>
+        <span>Our Team</span>
+      </div>
+      <h2>Senior principals, every engagement.</h2>
+    </div>
+    <p class="reveal">Every Volta engagement is led by a principal with direct institutional experience. No junior teams. No learning curves on your mandate.</p>
+
+    <div class="experts-grid">
+      <div class="expert-card reveal">
+        <div class="expert-stripe founder"></div>
+        <div class="expert-body">
+          <div class="expert-avatar"><span>DG</span></div>
+          <h3>David Gabriel</h3>
+          <span class="expert-role">Founding Partner</span>
+          <p class="expert-bio">Development finance professional with 20+ years spanning investment banking in West Africa ($1.7B+ deal flow), management consulting at Simon-Kucher &amp; Partners, and multilateral development institutions — IFC, the World Bank, and the African Development Bank. MBA from HEC Paris.</p>
+          <div class="expert-tags">
+            <span class="expert-tag">AfDB</span><span class="expert-tag">IFC</span><span class="expert-tag">World Bank</span><span class="expert-tag">HEC Paris</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="expert-card reveal">
+        <div class="expert-stripe principal"></div>
+        <div class="expert-body">
+          <div class="expert-avatar"><span>OO</span></div>
+          <h3>Ope Onibokun</h3>
+          <span class="expert-role">Senior Principal — Infrastructure &amp; Energy</span>
+          <p class="expert-bio">Global infrastructure investment professional with 20+ years. Former Investment Director at British International Investment (BII). Head of Project Finance at Arise, raising US$200M+ for strategic port projects. Previously with Investec/EAIF ($1B fund, $2B+ financings) and Citigroup Hong Kong. MBA, Duke Fuqua.</p>
+          <div class="expert-tags">
+            <span class="expert-tag">BII</span><span class="expert-tag">Citigroup</span><span class="expert-tag">EAIF</span><span class="expert-tag">Duke Fuqua</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="expert-card reveal">
+        <div class="expert-stripe principal"></div>
+        <div class="expert-body">
+          <div class="expert-avatar"><span>AA</span></div>
+          <h3>Akinseye Akinola</h3>
+          <span class="expert-role">Senior Principal — Private Equity &amp; Financial Structuring</span>
+          <p class="expert-bio">Finance and investment executive with 20+ years across investment banking, private equity, and fintech. Career spans UBS Investment Bank, Emerging Capital Partners, Vantage Capital (Africa's largest mezzanine fund), and Standard Bank Group. MBA, Harvard Business School.</p>
+          <div class="expert-tags">
+            <span class="expert-tag">UBS</span><span class="expert-tag">Standard Bank</span><span class="expert-tag">Vantage Capital</span><span class="expert-tag">Harvard</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="expert-card reveal">
+        <div class="expert-stripe principal"></div>
+        <div class="expert-body">
+          <div class="expert-avatar"><span>KO</span></div>
+          <h3>Kayode Odeleye</h3>
+          <span class="expert-role">Senior Principal — Transaction Structuring &amp; Capital Markets</span>
+          <p class="expert-bio">Investment banking and private markets professional with 17+ years. Former Director of Leveraged Finance Africa at Standard Chartered Bank (10+ years). Now Partner at 23mile Capital and Founder of Caena, advising PE and VC funds on portfolio value and restructuring. MIT Sloan executive programs.</p>
+          <div class="expert-tags">
+            <span class="expert-tag">Standard Chartered</span><span class="expert-tag">MIT Sloan</span><span class="expert-tag">23mile Capital</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="expert-card reveal">
+        <div class="expert-stripe principal"></div>
+        <div class="expert-body">
+          <div class="expert-avatar"><span>BA</span></div>
+          <h3>Bowale Odumade Adeoye</h3>
+          <span class="expert-role">Senior Principal — Infrastructure Investment &amp; ESG</span>
+          <p class="expert-bio">Senior infrastructure investment executive with 20+ years. Spent 15 years at Africa Finance Corporation leading 20+ investments across power, renewables, petroleum logistics, and transport. Former GE Capital, Chevron, Accenture. Chartered Director. MBA, Kellogg School of Management.</p>
+          <div class="expert-tags">
+            <span class="expert-tag">AFC</span><span class="expert-tag">GE Capital</span><span class="expert-tag">Chevron</span><span class="expert-tag">Kellogg</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="expert-card reveal">
+        <div class="expert-stripe principal"></div>
+        <div class="expert-body">
+          <div class="expert-avatar"><span>DP</span></div>
+          <h3>Dolapo Popoola</h3>
+          <span class="expert-role">Senior Principal — Energy &amp; Power Sector</span>
+          <p class="expert-bio">Power sector professional with 18+ years. Former Managing Director of Kaduna Power Supply Company (KAPSCO), leading major solar deployment programs including 2.4MW across 47 healthcare facilities. Former Energy Consultant to Lagos State Government. Invited to join UNECA Team Africa Energy. Speaks 7 languages. MSc Renewable Energy, TU Berlin.</p>
+          <div class="expert-tags">
+            <span class="expert-tag">KAPSCO</span><span class="expert-tag">UNECA</span><span class="expert-tag">TU Berlin</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ENGAGEMENTS ===================== -->
+<section id="engagements" class="engagements">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">
+        <div class="accent-line"></div>
+        <span>Select Engagements</span>
+      </div>
+      <h2>Where we've delivered.</h2>
+    </div>
+    <p class="reveal">Representative engagements across our practice areas. Details anonymized per institutional confidentiality requirements.</p>
+
+    <div class="engage-grid">
+      <div class="engage-card reveal">
+        <div class="engage-pills"><span class="engage-pill">Advisory</span><span class="engage-pill">Investment</span></div>
+        <h3>DFI Investment Pipeline Support</h3>
+        <p>Embedded within a major DFI's investment committee, reviewing and strengthening $2B+ in investment proposals across 16 countries and 10 sectors — from sovereign loans to private sector equity.</p>
+        <div class="engage-metrics">
+          <span class="engage-metric">$2B+ Proposals</span><span class="engage-divider">|</span>
+          <span class="engage-metric">50+ Investments</span><span class="engage-divider">|</span>
+          <span class="engage-metric">16 Countries</span>
+        </div>
+      </div>
+
+      <div class="engage-card reveal">
+        <div class="engage-pills"><span class="engage-pill">Infrastructure</span><span class="engage-pill">Telecom</span></div>
+        <h3>Pan-African Digital Infrastructure Bond</h3>
+        <p>Structured a $50M anchor investment in a $420M bond issuance for a regional telecom operator, achieving 7.4:1 leverage and mobilizing $370M in commercial capital for network expansion.</p>
+        <div class="engage-metrics">
+          <span class="engage-metric">$420M Bond</span><span class="engage-divider">|</span>
+          <span class="engage-metric">7.4:1 Leverage</span><span class="engage-divider">|</span>
+          <span class="engage-metric">$370M Mobilised</span>
+        </div>
+      </div>
+
+      <div class="engage-card reveal">
+        <div class="engage-pills"><span class="engage-pill">Energy</span><span class="engage-pill">Infrastructure</span></div>
+        <h3>Power &amp; Port Infrastructure Financing</h3>
+        <p>Led origination and structuring of infrastructure investments across power, transportation, ports, and logistics at a major development finance institution, contributing to financings exceeding $2B.</p>
+        <div class="engage-metrics">
+          <span class="engage-metric">$2B+ Financings</span><span class="engage-divider">|</span>
+          <span class="engage-metric">Multi-sector</span><span class="engage-divider">|</span>
+          <span class="engage-metric">Pan-African</span>
+        </div>
+      </div>
+
+      <div class="engage-card reveal">
+        <div class="engage-pills"><span class="engage-pill">ESG</span><span class="engage-pill">Climate</span></div>
+        <h3>Climate Finance &amp; Green Investment Pipeline</h3>
+        <p>Grew a sustainable finance pipeline by 400%. Structured sustainability-linked instruments and positioned the unit as lead arranger across climate and green investment products.</p>
+        <div class="engage-metrics">
+          <span class="engage-metric">400% Pipeline Growth</span><span class="engage-divider">|</span>
+          <span class="engage-metric">$950M Pipeline</span>
+        </div>
+      </div>
+
+      <div class="engage-card reveal">
+        <div class="engage-pills"><span class="engage-pill">Infrastructure</span><span class="engage-pill">ESG</span></div>
+        <h3>Industrial Waste-to-Value Infrastructure</h3>
+        <p>Developed the technical and financial architecture for a large-scale waste processing facility. Structured blended financing combining government grants, commercial loans, and private equity. Model now being replicated.</p>
+        <div class="engage-metrics">
+          <span class="engage-metric">Circular Economy</span><span class="engage-divider">|</span>
+          <span class="engage-metric">Blended Finance</span><span class="engage-divider">|</span>
+          <span class="engage-metric">Replicable Model</span>
+        </div>
+      </div>
+
+      <div class="engage-card reveal">
+        <div class="engage-pills"><span class="engage-pill">Financial Services</span><span class="engage-pill">Fintech</span></div>
+        <h3>Fintech Acquisition Advisory</h3>
+        <p>Advised on a $60M fintech venture acquisition — due diligence, valuation, and transaction structuring for a private equity-backed deal in a fast-moving digital financial services market.</p>
+        <div class="engage-metrics">
+          <span class="engage-metric">$60M Transaction</span><span class="engage-divider">|</span>
+          <span class="engage-metric">M&amp;A Advisory</span><span class="engage-divider">|</span>
+          <span class="engage-metric">PE-backed</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONTACT ===================== -->
+<section id="contact" class="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="reveal">
+        <div class="section-label">
+          <div class="accent-line"></div>
+          <span>Get in Touch</span>
+        </div>
+        <h2>Let's talk about<br>your next investment.</h2>
+        <p style="color:#5a7a8a;font-size:1.05rem;line-height:1.7;margin-bottom:32px;">Whether you're preparing a project for DFI financing, structuring a complex transaction, or looking to strengthen your investment pipeline — we'd like to hear from you.</p>
+        <div>
+          <div class="contact-info-item">
+            <div class="contact-icon"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg></div>
+            <div><strong>Email</strong><a href="mailto:contact@voltapartners.co">contact@voltapartners.co</a></div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-icon"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg></div>
+            <div><strong>Locations</strong><span style="color:#5a7a8a;">Paris &middot; Lagos &middot; Dubai</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="form-box">
+          <h3>Send us a message</h3>
+          <form id="contact-form" onsubmit="event.preventDefault(); this.style.display='none'; document.getElementById('form-success').classList.add('show');">
+            <div class="form-group"><label>Name</label><input type="text" placeholder="Your full name"></div>
+            <div class="form-group"><label>Email</label><input type="email" placeholder="you@organisation.com"></div>
+            <div class="form-group"><label>Organisation</label><input type="text" placeholder="Your organisation"></div>
+            <div class="form-group"><label>How can we help?</label><textarea rows="4" placeholder="Tell us about your project or mandate..."></textarea></div>
+            <button type="submit" class="btn-primary form-submit">Send Message</button>
+          </form>
+          <div id="form-success" class="form-success">
+            <div class="check"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></div>
+            <h3>Message Sent</h3>
+            <p>We'll get back to you shortly.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="footer-logo">VP</span>
+        <span style="color:var(--color-white);font-family:var(--font-heading);font-weight:600;">Volta Partners</span>
+        <span class="sub">— A Fluent Africa Company</span>
+      </div>
+      <div class="footer-links">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#experts">Experts</a>
+        <a href="#engagements">Engagements</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Volta Partners. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ===================== SCRIPTS ===================== -->
+<script>
+// Navbar scroll
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// Mobile menu
+document.getElementById('menu-toggle').addEventListener('click', () => {
+  document.getElementById('mobile-menu').classList.toggle('open');
+});
+document.querySelectorAll('#mobile-menu a').forEach(link => {
+  link.addEventListener('click', () => {
+    document.getElementById('mobile-menu').classList.remove('open');
+  });
+});
+
+// Reveal on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+</body>
+</html>
