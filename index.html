@@ -306,6 +306,34 @@ footer { background: var(--color-dark); padding: 48px 0; }
 
 /* Section heading hover for case studies */
 .case-studies h2 { transition: color 0.3s; }
+
+/* ========== CASE STUDY MODAL ========== */
+.case-modal-overlay {
+  position: fixed; inset: 0; background: rgba(26,42,51,0.7); z-index: 200;
+  display: flex; align-items: center; justify-content: center; padding: 24px;
+  opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s;
+  backdrop-filter: blur(4px);
+}
+.case-modal-overlay.open { opacity: 1; visibility: visible; }
+.case-modal {
+  background: var(--color-white); border-radius: 16px; max-width: 680px; width: 100%;
+  max-height: 85vh; overflow-y: auto; position: relative; padding: 40px;
+  transform: translateY(20px); transition: transform 0.3s;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.2);
+}
+.case-modal-overlay.open .case-modal { transform: translateY(0); }
+.case-modal-close {
+  position: absolute; top: 16px; right: 16px; width: 36px; height: 36px;
+  border-radius: 50%; border: none; background: var(--color-gray-light);
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s; font-size: 18px; color: var(--color-charcoal);
+}
+.case-modal-close:hover { background: #e0e0e0; }
+.case-modal .case-tags { margin-bottom: 16px; }
+.case-modal h2 { font-size: 1.5rem; line-height: 1.3; margin-bottom: 8px; }
+.case-modal .case-metrics { margin-bottom: 24px; }
+.case-modal-body h3 { font-size: 1rem; color: var(--color-sea-green); margin: 24px 0 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; font-family: var(--font-heading); }
+.case-modal-body p { color: #5a7a8a; font-size: 0.95rem; line-height: 1.7; margin-bottom: 12px; }
 </style>
 </head>
 <body>
@@ -345,9 +373,9 @@ footer { background: var(--color-dark); padding: 48px 0; }
     <div class="hero-content">
       <div class="hero-label">
         <div class="accent-line"></div>
-        <span>Development Finance Advisory</span>
+        <span>Investment Advisory and Management Consulting</span>
       </div>
-      <h1>Turning investment ambition<br>into bankable reality.</h1>
+      <h1>Turning investment ambition<br>into development impact.<br>Into bankable reality.</h1>
       <p>We help development finance institutions, investors, and project sponsors prepare, structure, and close investments that move Africa forward. From pipeline development to financial close — and everything in between.</p>
       <div class="hero-buttons">
         <a href="#services" class="btn-primary">Our Services</a>
@@ -407,7 +435,7 @@ footer { background: var(--color-dark); padding: 48px 0; }
           <h3>Why Clients Choose Volta</h3>
           <div class="why-item">
             <div class="why-icon"><svg fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zm3.707 6.707a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/></svg></div>
-            <div><strong>Institutional Insider Perspective</strong><div class="desc">We've worked inside the DFIs — not just for them. We understand approval processes, risk frameworks, and what makes an investment committee say yes.</div></div>
+            <div><strong>Institutional Insider Perspective</strong><div class="desc">We've worked inside the investment firms and development banks — not just for them. We understand approval processes, risk frameworks, and what makes an investment committee say yes.</div></div>
           </div>
           <div class="why-item">
             <div class="why-icon"><svg fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zm3.707 6.707a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/></svg></div>
@@ -419,7 +447,7 @@ footer { background: var(--color-dark); padding: 48px 0; }
           </div>
           <div class="why-item">
             <div class="why-icon"><svg fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zm3.707 6.707a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/></svg></div>
-            <div><strong>Boutique Agility, Institutional Calibre</strong><div class="desc">Senior principals on every engagement. We bring judgement, relationships and battle-tested experience, not fancy reports and tools.</div></div>
+            <div><strong>Boutique Agility, Institutional Calibre</strong><div class="desc">Senior principals on every engagement. We bring judgement, relationships and battle-tested experience, not fancy reports and new shiny objects.</div></div>
           </div>
         </div>
       </div>
@@ -451,7 +479,7 @@ footer { background: var(--color-dark); padding: 48px 0; }
             <span class="service-lifecycle">During the Deal</span>
           </div>
         </div>
-        <p>End-to-end support from origination to financial close. We help investors and sponsors structure, appraise, and execute investments that meet DFI standards and attract co-financing.</p>
+        <p>End-to-end support from origination to financial close. We help investors and sponsors structure, appraise, and execute investments that meet investment committee standards and attract financing.</p>
         <div class="pills">
           <span class="pill">Due Diligence</span><span class="pill">Feasibility Studies</span><span class="pill">Technical Advisory</span><span class="pill">Fundraising Strategy</span><span class="pill">Funds Mobilisation</span>
         </div>
@@ -469,7 +497,7 @@ footer { background: var(--color-dark); padding: 48px 0; }
         </div>
         <p>Helping project sponsors and early-stage ventures become investment-ready. We build the commercial case, prepare bankable documentation, and connect sponsors with the right capital sources.</p>
         <div class="pills">
-          <span class="pill">Investment Readiness</span><span class="pill">Project Preparation</span><span class="pill">Quality at Entry</span><span class="pill">Growth Strategy</span><span class="pill">Business Planning</span>
+          <span class="pill">Investment Readiness</span><span class="pill">Project Preparation</span><span class="pill">Quality at Entry</span><span class="pill">Project Development</span><span class="pill">Business Plans</span>
         </div>
       </div>
 
@@ -499,9 +527,26 @@ footer { background: var(--color-dark); padding: 48px 0; }
             <span class="service-lifecycle">Across the Lifecycle</span>
           </div>
         </div>
-        <p>Integrating sustainability into investment decision-making. We design ESG strategies, measure development impact, and structure climate finance instruments that meet institutional standards.</p>
+        <p>Integrating sustainability to strengthen the investment thesis and protect value creation. We design common-sense ESG strategies, measure development impact, and structure climate and blended finance instruments that diversify funding sources.</p>
         <div class="pills">
           <span class="pill">Results Measurement</span><span class="pill">Climate Assessment</span><span class="pill">Impact Strategy</span><span class="pill">Climate Finance</span><span class="pill">ESG Strategy</span>
+        </div>
+      </div>
+    </div>
+
+      <div class="service-card reveal">
+        <div class="service-header">
+          <div class="service-icon">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 0h.008v.008h-.008V7.5z"/></svg>
+          </div>
+          <div>
+            <h3>Private Sector Development</h3>
+            <span class="service-lifecycle">Enabling Environment</span>
+          </div>
+        </div>
+        <p>PPP advisory, investment climate reform, and investment promotion strategies. We help governments and development partners create the conditions for private capital to flow into priority sectors.</p>
+        <div class="pills">
+          <span class="pill">PPP Advisory</span><span class="pill">Investment Climate Reform</span><span class="pill">Investment Promotion</span><span class="pill">Sector Strategy</span>
         </div>
       </div>
     </div>
@@ -691,7 +736,7 @@ footer { background: var(--color-dark); padding: 48px 0; }
       </div>
       <h2>Senior principals, every engagement.</h2>
     </div>
-    <p class="reveal">Every Volta engagement is led by a principal with direct institutional experience. No junior teams. No learning curves on your mandate.</p>
+    <p class="reveal">Every Volta engagement is led by a principal with direct institutional and industry experience. No learning curves on your mandate. Zero ramp-up time.</p>
 
     <div class="experts-grid">
       <div class="expert-card reveal">
@@ -785,7 +830,7 @@ footer { background: var(--color-dark); padding: 48px 0; }
         <div class="accent-line"></div>
       </div>
       <h2>Let's talk about<br>your next investment.</h2>
-      <p style="color:#5a7a8a;font-size:1.05rem;line-height:1.7;margin-bottom:40px;">Whether you're preparing a project for DFI financing, structuring a complex transaction, or looking to strengthen your investment pipeline — we'd like to hear from you.</p>
+      <p style="color:#5a7a8a;font-size:1.05rem;line-height:1.7;margin-bottom:40px;">Whether you're preparing a project for financing, structuring a complex transaction, or looking to strengthen your investment pipeline — we'd like to hear from you.</p>
       <div style="display:inline-flex;align-items:center;gap:16px;background:var(--color-gray-light);border-radius:12px;padding:24px 40px;">
         <div class="contact-icon"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg></div>
         <div style="text-align:left;"><strong style="font-family:var(--font-heading);font-weight:600;display:block;margin-bottom:2px;">Email</strong><a href="mailto:contact@voltapartners.co" style="color:var(--color-sea-green);font-size:1.05rem;transition:opacity 0.2s;">contact@voltapartners.co</a></div>
@@ -817,6 +862,17 @@ footer { background: var(--color-dark); padding: 48px 0; }
   </div>
 </footer>
 
+<!-- ===================== CASE STUDY MODAL ===================== -->
+<div class="case-modal-overlay" id="case-modal-overlay">
+  <div class="case-modal">
+    <button class="case-modal-close" id="case-modal-close">&times;</button>
+    <div id="case-modal-tags"></div>
+    <h2 id="case-modal-title"></h2>
+    <div id="case-modal-metrics" class="case-metrics"></div>
+    <div class="case-modal-body" id="case-modal-body"></div>
+  </div>
+</div>
+
 <!-- ===================== SCRIPTS ===================== -->
 <script>
 // Navbar scroll
@@ -842,6 +898,92 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Case study modal
+const caseDetails = {
+  'Attracting Investment into an Africa-wide Food & Agri Platform': {
+    challenge: 'A major multilateral institution needed to mobilise private sector investment into a continent-wide food and agriculture program spanning 12 African countries. The program required a credible private sector strategy, bankable project pipeline, and a financing architecture capable of attracting both DFI and commercial capital at scale.',
+    intervention: 'Architected the end-to-end private sector strategy and investment framework. Designed the pipeline development methodology, structured financing instruments, and built relationships with investors and agribusiness sponsors across the continent to convert early-stage concepts into bankable investment opportunities.',
+    impact: 'Secured over $300M in committed financing and built a $3B investment pipeline spanning 12 countries. The program became a reference model for multilateral private sector engagement in African agriculture.'
+  },
+  "Strategic Support for a Major DFI's Investment Pipeline": {
+    challenge: 'A major multilateral development bank needed senior strategic support within its highest investment approval body to improve the quality, speed, and bankability of investment proposals flowing through the pipeline — covering $2B+ in deals across 10 sectors and 16 countries.',
+    intervention: 'Embedded as a senior strategist within the investment committee, reviewing and strengthening board-readiness across the full pipeline. Worked across sovereign and non-sovereign operations to sharpen investment theses, improve additionality narratives, and accelerate processing timelines.',
+    impact: 'Strengthened processing quality across 50+ investment proposals totalling $2B+, spanning 16 countries and 10 sectors — from sovereign budget support to private sector equity and debt transactions.'
+  },
+  'Private Equity Fintech Acquisition & Transformation Advisory': {
+    challenge: 'A private equity firm was evaluating the acquisition of a major African fintech platform valued at $350M+. The firm needed rigorous commercial due diligence to validate the investment thesis, followed by a post-acquisition transformation program to drive the platform toward a $2B+ valuation.',
+    intervention: 'Conducted comprehensive commercial due diligence covering market sizing, competitive dynamics, unit economics, and growth trajectory. Post-acquisition, led the transformation program — redesigning the commercial strategy, optimising operations, and positioning the platform for its next funding round.',
+    impact: 'Enabled a successful acquisition of a $350M+ fintech platform. Led the post-acquisition transformation targeting a $2B+ valuation through commercial excellence and operational optimisation.'
+  },
+  'Climate Finance Investment Strategy & Readiness': {
+    challenge: 'An African economy needed a comprehensive climate finance mobilisation framework to unlock private capital for climate action — spanning sovereign instruments, institutional mechanisms, and market-building interventions.',
+    intervention: 'Designed an integrated 8-element framework encompassing a $500M+ sovereign sustainability-linked bond, a national climate fund, green taxonomy development, carbon market readiness, and institutional capacity building — creating an interconnected system to channel public and private capital toward climate priorities.',
+    impact: 'Delivered a national climate finance roadmap with 8 interconnected instruments, anchored by a $500M+ sustainability-linked bond framework. The strategy became the country\'s reference document for climate investment mobilisation.'
+  },
+  'Blended Finance Portfolio Leadership': {
+    challenge: 'A $30M blended finance facility needed experienced global coordination to deploy concessional capital alongside mainstream DFI investments across multiple African countries, ensuring development impact while maintaining fiduciary standards.',
+    intervention: 'Served as global coordinator for the facility, managing capital deployment across 8 African countries. Structured blended finance instruments that de-risked DFI investments, monitored portfolio performance, and built the track record needed to attract follow-on donor commitments.',
+    impact: 'Successfully deployed capital across 8 countries alongside mainstream DFI investments. Secured a follow-on donor commitment worth double the initial allocation — validating the blended finance model.'
+  },
+  'DFI Infrastructure Investment Origination Across Africa': {
+    challenge: 'A major bilateral development finance institution needed to significantly expand its infrastructure investment footprint across Africa, requiring a senior professional to build origination pipelines and structure financings across energy, transport, ports, and logistics.',
+    intervention: 'Established and led infrastructure investment origination across the continent. Built relationships with developers and co-investors, structured innovative financing solutions, and coordinated with multilateral institutions on syndicated transactions across multiple sectors and jurisdictions.',
+    impact: 'Successfully originated and structured multiple infrastructure investments spanning energy, transport, ports, and logistics across Africa, contributing to the institution\'s growing infrastructure portfolio.'
+  },
+  'Pan-African Strategic Port Financing Programme': {
+    challenge: 'A pan-African port and logistics infrastructure developer needed to secure substantial project finance to develop and expand strategic port concessions across West and Central Africa, requiring complex multi-tranche financing structures.',
+    intervention: 'Led the project finance workstream end-to-end — structuring facilities across commercial banks, DFIs, and export credit agencies. Managed financial modelling, bankability assessments, and lender negotiations across multiple jurisdictions.',
+    impact: 'Raised over US$200 million in project finance for strategic port infrastructure, enabling the development of critical trade gateway assets and supporting job creation and trade facilitation.'
+  },
+  'Africa Infrastructure Debt Fund — $2B+ Financings': {
+    challenge: 'A US$1 billion Africa-focused infrastructure debt fund required experienced professionals to originate and execute complex debt transactions across power, transport, logistics, and telecommunications.',
+    intervention: 'Contributed to origination and execution of infrastructure debt financings — screening investments, performing credit analysis, and structuring senior and subordinated debt facilities across power generation, toll roads, port facilities, fibre-optic networks, and mobile tower infrastructure.',
+    impact: 'Contributed to over US$2 billion in infrastructure debt financings, providing essential long-tenor capital to projects that improved energy access, transport connectivity, and digital infrastructure across sub-Saharan Africa.'
+  },
+  'Cross-Border Infrastructure Advisory — Asia & Europe': {
+    challenge: 'Infrastructure clients across Asia and Europe needed advisory and debt arrangement for power, oil & gas, and infrastructure assets operating across multiple jurisdictions with diverse regulatory frameworks.',
+    intervention: 'Advised on and arranged complex debt facilities at a leading global investment bank. Structured project finance and corporate debt, managed institutional investor relationships, and navigated regulatory frameworks across Asian and European markets.',
+    impact: 'Successfully advised on and arranged multiple cross-border debt facilities, supporting the development of critical power, oil & gas, and infrastructure assets across Asia and Europe.'
+  }
+};
+
+const modalOverlay = document.getElementById('case-modal-overlay');
+const modalClose = document.getElementById('case-modal-close');
+
+document.querySelectorAll('.case-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const title = card.querySelector('h3').textContent.replace(/\u2014/g, '—');
+    const detail = caseDetails[title];
+    if (!detail) return;
+    document.getElementById('case-modal-tags').innerHTML = card.querySelector('.case-tags').innerHTML;
+    document.getElementById('case-modal-title').textContent = title;
+    document.getElementById('case-modal-metrics').innerHTML = card.querySelector('.case-metrics').innerHTML;
+    document.getElementById('case-modal-body').innerHTML =
+      '<h3>Challenge</h3><p>' + detail.challenge + '</p>' +
+      '<h3>Strategic Intervention</h3><p>' + detail.intervention + '</p>' +
+      '<h3>Impact</h3><p>' + detail.impact + '</p>';
+    modalOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  });
+});
+
+modalClose.addEventListener('click', () => {
+  modalOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+});
+modalOverlay.addEventListener('click', (e) => {
+  if (e.target === modalOverlay) {
+    modalOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && modalOverlay.classList.contains('open')) {
+    modalOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+});
 
 // Smooth scroll
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
