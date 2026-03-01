@@ -171,26 +171,6 @@ nav.scrolled { background: rgba(55,81,95,0.97); box-shadow: 0 2px 20px rgba(0,0,
 .expert-tags { display: flex; flex-wrap: wrap; gap: 6px; }
 .expert-tag { font-size: 0.75rem; padding: 4px 10px; background: var(--color-white); border-radius: 4px; color: #5a7a8a; font-weight: 500; }
 
-/* ========== ENGAGEMENTS ========== */
-.engagements { background: var(--color-charcoal); }
-.engagements h2 { color: var(--color-white); font-size: 2rem; margin-bottom: 16px; }
-@media (min-width: 1024px) { .engagements h2 { font-size: 2.5rem; } }
-.engagements > .container > p { color: rgba(255,255,255,0.5); max-width: 600px; margin-bottom: 48px; }
-.engagements .section-label span { color: var(--color-sunglow); }
-.engage-grid { display: grid; gap: 20px; }
-@media (min-width: 768px) { .engage-grid { grid-template-columns: 1fr 1fr; } }
-@media (min-width: 1024px) { .engage-grid { grid-template-columns: 1fr 1fr 1fr; } }
-.engage-card { background: rgba(255,255,255,0.05); border-radius: 12px; padding: 24px; position: relative; overflow: hidden; transition: background 0.3s; }
-.engage-card:hover { background: rgba(255,255,255,0.08); }
-.engage-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--color-sea-green), var(--color-cerulean)); transform: scaleX(0); transform-origin: left; transition: transform 0.4s; }
-.engage-card:hover::before { transform: scaleX(1); }
-.engage-pills { display: flex; gap: 8px; margin-bottom: 16px; }
-.engage-pill { background: rgba(9,129,74,0.15); color: var(--color-sea-green); padding: 3px 12px; font-size: 0.75rem; font-weight: 500; border-radius: 999px; }
-.engage-card h3 { color: var(--color-white); font-size: 1.05rem; margin-bottom: 8px; }
-.engage-card > p { color: rgba(255,255,255,0.5); font-size: 0.85rem; line-height: 1.6; margin-bottom: 16px; }
-.engage-metrics { display: flex; flex-wrap: wrap; gap: 12px; font-size: 0.85rem; }
-.engage-metric { color: var(--color-sea-green); font-weight: 600; }
-.engage-divider { color: rgba(255,255,255,0.2); }
 
 /* ========== CONTACT ========== */
 .contact { background: var(--color-white); }
@@ -245,14 +225,11 @@ footer { background: var(--color-dark); padding: 48px 0; }
 .expert-card { cursor: pointer; }
 .expert-card:active { transform: translateY(-2px) scale(0.98); }
 
-.engage-card { cursor: pointer; }
-.engage-card:active { background: rgba(255,255,255,0.12); transform: scale(0.98); }
 
 /* Pill pop on hover */
-.pill, .sector-pill, .engage-pill, .expert-tag { transition: transform 0.2s, box-shadow 0.2s, background 0.2s; cursor: default; }
+.pill, .sector-pill, .expert-tag { transition: transform 0.2s, box-shadow 0.2s, background 0.2s; cursor: default; }
 .pill:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(9,129,74,0.15); background: rgba(9,129,74,0.14); }
 .sector-pill:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(55,81,95,0.10); background: rgba(55,81,95,0.08); }
-.engage-pill:hover { transform: translateY(-1px); background: rgba(9,129,74,0.25); }
 .expert-tag:hover { transform: translateY(-2px); box-shadow: 0 3px 10px rgba(0,0,0,0.08); }
 
 /* Stat counter pulse on hover */
@@ -274,7 +251,7 @@ footer { background: var(--color-dark); padding: 48px 0; }
 .nav-links a:not(.nav-cta):hover::after { width: 100%; }
 
 /* Section header text hover glow */
-.about h2, .services h2, .experts h2, .engagements h2, .contact h2 { transition: color 0.3s; }
+.about h2, .services h2, .experts h2, .contact h2 { transition: color 0.3s; }
 
 /* Logo mark styles for green rounded rectangle */
 .logo-mark { display: inline-flex; align-items: center; justify-content: center; background: var(--color-sea-green); border-radius: 6px; padding: 4px 8px; font-family: var(--font-logo); font-weight: 900; font-size: 18px; color: var(--color-white); letter-spacing: -0.03em; }
@@ -303,7 +280,7 @@ footer { background: var(--color-dark); padding: 48px 0; }
 .case-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.06); border-color: rgba(9,129,74,0.12); }
 .case-card:active { transform: translateY(-2px) scale(0.985); }
 .case-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
-.case-tag { font-size: 0.7rem; padding: 3px 10px; border-radius: 999px; font-weight: 600; font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.05em; }
+.case-tag { font-size: 0.7rem; padding: 3px 10px; border-radius: 999px; font-weight: 600; font-family: var(--font-heading); text-transform: capitalize; letter-spacing: 0.02em; }
 .case-tag.investment { background: rgba(9,129,74,0.1); color: var(--color-sea-green); }
 .case-tag.advisory { background: rgba(0,120,161,0.1); color: var(--color-cerulean); }
 .case-tag.fintech { background: rgba(128,0,255,0.08); color: #7c3aed; }
@@ -346,7 +323,6 @@ footer { background: var(--color-dark); padding: 48px 0; }
         <a href="#services">Services</a>
         <a href="#case-studies">Case Studies</a>
         <a href="#experts">Experts</a>
-        <a href="#engagements">Engagements</a>
         <a href="#contact" class="nav-cta">Get in Touch</a>
       </div>
       <button class="menu-toggle" id="menu-toggle" aria-label="Menu">
@@ -358,7 +334,6 @@ footer { background: var(--color-dark); padding: 48px 0; }
       <a href="#services">Services</a>
       <a href="#case-studies">Case Studies</a>
       <a href="#experts">Experts</a>
-      <a href="#engagements">Engagements</a>
       <a href="#contact">Get in Touch</a>
     </div>
   </div>
@@ -800,87 +775,6 @@ footer { background: var(--color-dark); padding: 48px 0; }
   </div>
 </section>
 
-<!-- ===================== ENGAGEMENTS ===================== -->
-<section id="engagements" class="engagements">
-  <div class="container">
-    <div class="reveal">
-      <div class="section-label">
-        <div class="accent-line"></div>
-        <span>Select Engagements</span>
-      </div>
-      <h2>Where we've delivered.</h2>
-    </div>
-    <p class="reveal">Representative engagements across our practice areas. Details anonymized per institutional confidentiality requirements.</p>
-
-    <div class="engage-grid">
-      <div class="engage-card reveal">
-        <div class="engage-pills"><span class="engage-pill">Advisory</span><span class="engage-pill">Investment</span></div>
-        <h3>DFI Investment Pipeline Support</h3>
-        <p>Embedded within a major DFI's investment committee, reviewing and strengthening $2B+ in investment proposals across 16 countries and 10 sectors — from sovereign loans to private sector equity.</p>
-        <div class="engage-metrics">
-          <span class="engage-metric">$2B+ Proposals</span><span class="engage-divider">|</span>
-          <span class="engage-metric">50+ Investments</span><span class="engage-divider">|</span>
-          <span class="engage-metric">16 Countries</span>
-        </div>
-      </div>
-
-      <div class="engage-card reveal">
-        <div class="engage-pills"><span class="engage-pill">Infrastructure</span><span class="engage-pill">Telecom</span></div>
-        <h3>Pan-African Digital Infrastructure Bond</h3>
-        <p>Structured a $50M anchor investment in a $420M bond issuance for a regional telecom operator, achieving 7.4:1 leverage and mobilizing $370M in commercial capital for network expansion.</p>
-        <div class="engage-metrics">
-          <span class="engage-metric">$420M Bond</span><span class="engage-divider">|</span>
-          <span class="engage-metric">7.4:1 Leverage</span><span class="engage-divider">|</span>
-          <span class="engage-metric">$370M Mobilised</span>
-        </div>
-      </div>
-
-      <div class="engage-card reveal">
-        <div class="engage-pills"><span class="engage-pill">Energy</span><span class="engage-pill">Infrastructure</span></div>
-        <h3>Power &amp; Port Infrastructure Financing</h3>
-        <p>Led origination and structuring of infrastructure investments across power, transportation, ports, and logistics at a major development finance institution, contributing to financings exceeding $2B.</p>
-        <div class="engage-metrics">
-          <span class="engage-metric">$2B+ Financings</span><span class="engage-divider">|</span>
-          <span class="engage-metric">Multi-sector</span><span class="engage-divider">|</span>
-          <span class="engage-metric">Pan-African</span>
-        </div>
-      </div>
-
-      <div class="engage-card reveal">
-        <div class="engage-pills"><span class="engage-pill">ESG</span><span class="engage-pill">Climate</span></div>
-        <h3>Climate Finance &amp; Green Investment Pipeline</h3>
-        <p>Grew a sustainable finance pipeline by 400%. Structured sustainability-linked instruments and positioned the unit as lead arranger across climate and green investment products.</p>
-        <div class="engage-metrics">
-          <span class="engage-metric">400% Pipeline Growth</span><span class="engage-divider">|</span>
-          <span class="engage-metric">$950M Pipeline</span>
-        </div>
-      </div>
-
-      <div class="engage-card reveal">
-        <div class="engage-pills"><span class="engage-pill">Infrastructure</span><span class="engage-pill">ESG</span></div>
-        <h3>Industrial Waste-to-Value Infrastructure</h3>
-        <p>Developed the technical and financial architecture for a large-scale waste processing facility. Structured blended financing combining government grants, commercial loans, and private equity. Model now being replicated.</p>
-        <div class="engage-metrics">
-          <span class="engage-metric">Circular Economy</span><span class="engage-divider">|</span>
-          <span class="engage-metric">Blended Finance</span><span class="engage-divider">|</span>
-          <span class="engage-metric">Replicable Model</span>
-        </div>
-      </div>
-
-      <div class="engage-card reveal">
-        <div class="engage-pills"><span class="engage-pill">Financial Services</span><span class="engage-pill">Fintech</span></div>
-        <h3>Fintech Acquisition Advisory</h3>
-        <p>Advised on a $60M fintech venture acquisition — due diligence, valuation, and transaction structuring for a private equity-backed deal in a fast-moving digital financial services market.</p>
-        <div class="engage-metrics">
-          <span class="engage-metric">$60M Transaction</span><span class="engage-divider">|</span>
-          <span class="engage-metric">M&amp;A Advisory</span><span class="engage-divider">|</span>
-          <span class="engage-metric">PE-backed</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ===================== CONTACT ===================== -->
 <section id="contact" class="contact">
   <div class="container">
@@ -914,7 +808,6 @@ footer { background: var(--color-dark); padding: 48px 0; }
         <a href="#services">Services</a>
         <a href="#case-studies">Case Studies</a>
         <a href="#experts">Experts</a>
-        <a href="#engagements">Engagements</a>
         <a href="#contact">Contact</a>
       </div>
     </div>
