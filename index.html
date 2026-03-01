@@ -81,6 +81,41 @@ nav.scrolled { background: rgba(55,81,95,0.97); box-shadow: 0 2px 20px rgba(0,0,
 .hero-label span { color: var(--color-sunglow); font-family: var(--font-heading); font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; }
 .hero h1 { color: var(--color-white); font-size: 2.5rem; line-height: 1.15; margin-bottom: 24px; }
 @media (min-width: 1024px) { .hero h1 { font-size: 3.5rem; } }
+
+/* Spinning word animation */
+.word-spinner {
+  display: inline-block;
+  position: relative;
+  height: 1.15em;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+.word-spinner-track {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.word-spinner-item {
+  display: flex;
+  align-items: center;
+  gap: 0.25em;
+  height: 1.15em;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+.word-dot {
+  display: inline-block;
+  width: 0.28em;
+  height: 0.28em;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-bottom: 0.05em;
+  box-shadow: 0 0 8px currentColor;
+}
+.word-text {
+  font-style: italic;
+  font-weight: 700;
+}
 .hero p { color: rgba(255,255,255,0.6); font-size: 1.1rem; line-height: 1.7; margin-bottom: 40px; max-width: 600px; }
 .hero-buttons { display: flex; flex-wrap: wrap; gap: 16px; }
 .btn-primary { display: inline-block; background: var(--color-sea-green); color: var(--color-white); padding: 14px 32px; font-family: var(--font-heading); font-weight: 600; font-size: 15px; border-radius: 6px; transition: all 0.3s; border: none; cursor: pointer; }
@@ -375,7 +410,7 @@ footer { background: var(--color-dark); padding: 48px 0; }
         <div class="accent-line"></div>
         <span>Investment Advisory and Management Consulting</span>
       </div>
-      <h1>Turning investment ambition<br>into development impact.<br>Into bankable reality.</h1>
+      <h1>Turning investment ambition into<br><span class="word-spinner" id="word-spinner"><span class="word-spinner-track" id="word-spinner-track"></span></span> impact.</h1>
       <p>We help development finance institutions, investors, and project sponsors prepare, structure, and close investments that move Africa forward. From pipeline development to financial close — and everything in between.</p>
       <div class="hero-buttons">
         <a href="#services" class="btn-primary">Our Services</a>
@@ -875,6 +910,39 @@ footer { background: var(--color-dark); padding: 48px 0; }
 
 <!-- ===================== SCRIPTS ===================== -->
 <script>
+// Word spinner animation
+(function() {
+  const words = [
+    { text: 'development', color: '#09814A' },
+    { text: 'commercial', color: '#0078A1' },
+    { text: 'market', color: '#E84855' },
+    { text: 'social', color: '#F77F00' },
+    { text: 'climate', color: '#2D936C' },
+    { text: 'sustainable', color: '#7B68EE' },
+    { text: 'transformative', color: '#FFCA3A' }
+  ];
+  const track = document.getElementById('word-spinner-track');
+  if (!track) return;
+  // Build items
+  words.forEach(w => {
+    const item = document.createElement('span');
+    item.className = 'word-spinner-item';
+    item.innerHTML = '<span class="word-dot" style="color:' + w.color + ';background:' + w.color + '"></span><span class="word-text" style="color:' + w.color + '">' + w.text + '</span>';
+    track.appendChild(item);
+  });
+  let current = 0;
+  setInterval(() => {
+    current = (current + 1) % words.length;
+    track.style.transform = 'translateY(-' + (current * (100 / words.length)) + '%)';
+    // Reset seamlessly after last word
+    if (current === 0) {
+      track.style.transition = 'none';
+      track.style.transform = 'translateY(0)';
+      requestAnimationFrame(() => { track.style.transition = 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)'; });
+    }
+  }, 2400);
+})();
+
 // Navbar scroll
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
