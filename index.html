@@ -939,15 +939,23 @@ footer { background: var(--color-dark); padding: 48px 0; }
   function measureAll() {
     var h1 = spinner.closest('h1');
     var h1Style = window.getComputedStyle(h1);
+    var fontSize = parseFloat(h1Style.fontSize);
+    // Create a full replica item offscreen to measure accurately
     var probe = document.createElement('span');
-    probe.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;font-family:' + h1Style.fontFamily + ';font-size:' + h1Style.fontSize + ';font-weight:700;font-style:italic;letter-spacing:' + h1Style.letterSpacing + ';';
+    probe.className = 'word-spinner-item';
+    probe.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;pointer-events:none;';
     document.body.appendChild(probe);
     widths = [];
-    var dotSize = parseFloat(h1Style.fontSize) * 0.28;
-    var gap = parseFloat(h1Style.fontSize) * 0.25;
     words.forEach(function(w) {
-      probe.textContent = w.text;
-      widths.push(Math.ceil(probe.offsetWidth + dotSize + gap + 4));
+      probe.innerHTML = '<span class="word-dot" style="background:' + w.color + '"></span><span class="word-text">' + w.text + '</span>';
+      // Force h1 font sizing onto the probe
+      probe.style.fontFamily = h1Style.fontFamily;
+      probe.style.fontSize = h1Style.fontSize;
+      probe.style.fontWeight = '700';
+      probe.style.letterSpacing = h1Style.letterSpacing;
+      var rect = probe.getBoundingClientRect();
+      // Add italic overhang buffer (italic chars extend ~0.08em past their box)
+      widths.push(Math.ceil(rect.width + fontSize * 0.12));
     });
     document.body.removeChild(probe);
   }
