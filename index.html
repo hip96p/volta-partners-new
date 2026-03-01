@@ -89,6 +89,7 @@ nav.scrolled { background: rgba(55,81,95,0.97); box-shadow: 0 2px 20px rgba(0,0,
   height: 1.15em;
   overflow: hidden;
   vertical-align: bottom;
+  transition: width 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 }
 .word-spinner-track {
   display: flex;
@@ -921,26 +922,43 @@ footer { background: var(--color-dark); padding: 48px 0; }
     { text: 'financial', color: '#7B68EE' },
     { text: 'lasting', color: '#2D936C' }
   ];
+  const spinner = document.getElementById('word-spinner');
   const track = document.getElementById('word-spinner-track');
-  if (!track) return;
+  if (!track || !spinner) return;
+  const items = [];
   // Build items
   words.forEach(w => {
     const item = document.createElement('span');
     item.className = 'word-spinner-item';
     item.innerHTML = '<span class="word-dot" style="color:' + w.color + ';background:' + w.color + '"></span><span class="word-text" style="color:' + w.color + '">' + w.text + '</span>';
     track.appendChild(item);
+    items.push(item);
   });
+  // Measure and set width to first word
+  function setWidth(idx) {
+    const w = items[idx].scrollWidth;
+    spinner.style.width = w + 'px';
+  }
+  setWidth(0);
   let current = 0;
   setInterval(() => {
     current = (current + 1) % words.length;
+    setWidth(current);
     track.style.transform = 'translateY(-' + (current * (100 / words.length)) + '%)';
     // Reset seamlessly after last word
     if (current === 0) {
       track.style.transition = 'none';
       track.style.transform = 'translateY(0)';
-      requestAnimationFrame(() => { track.style.transition = 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)'; });
+      spinner.style.transition = 'none';
+      setWidth(0);
+      requestAnimationFrame(() => {
+        track.style.transition = 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)';
+        spinner.style.transition = 'width 0.5s cubic-bezier(0.23, 1, 0.32, 1)';
+      });
     }
   }, 2400);
+  // Recalculate on resize
+  window.addEventListener('resize', () => setWidth(current));
 })();
 
 // Navbar scroll
