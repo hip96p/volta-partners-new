@@ -354,14 +354,18 @@ footer { background: var(--color-dark); padding: 48px 0; }
 .market-watch h2 { color: var(--color-white); font-size: 2rem; margin-bottom: 16px; }
 @media (min-width: 1024px) { .market-watch h2 { font-size: 2.5rem; } }
 .market-watch > .container > p { color: rgba(255,255,255,0.5); max-width: 600px; margin-bottom: 48px; }
-.mw-grid { display: grid; gap: 20px; }
-@media (min-width: 768px) { .mw-grid { grid-template-columns: 1fr 1fr; } }
-@media (min-width: 1024px) { .mw-grid { grid-template-columns: repeat(3, 1fr); } }
+.mw-track-wrapper { overflow: hidden; margin: 0 -24px; }
+@media (min-width: 1024px) { .mw-track-wrapper { margin: 0 -48px; } }
+.mw-track { display: flex; gap: 20px; animation: mw-marquee 60s linear infinite; }
+.mw-track:hover { animation-play-state: paused; }
+@keyframes mw-marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 .mw-card {
   background: rgba(255,255,255,0.06); border-radius: 12px; padding: 28px;
   border: 1px solid rgba(255,255,255,0.08); transition: all 0.3s;
   display: flex; flex-direction: column; cursor: default;
+  min-width: 360px; max-width: 400px; flex-shrink: 0;
 }
+@media (max-width: 480px) { .mw-card { min-width: 300px; max-width: 320px; } }
 .mw-card:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.15); transform: translateY(-3px); }
 .mw-card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; gap: 12px; }
 .mw-source {
@@ -916,8 +920,10 @@ footer { background: var(--color-dark); padding: 48px 0; }
       <h2>Latest investment signals<br>across Africa.</h2>
       <p>Tracking deal flow, project approvals, and capital commitments from Africa's leading development finance institutions and capital markets.</p>
     </div>
-    <div class="mw-grid" id="mw-grid">
-      <!-- Cards populated by JS -->
+    <div class="mw-track-wrapper">
+      <div class="mw-track" id="mw-track">
+        <!-- Cards populated by JS -->
+      </div>
     </div>
     <div class="mw-footer reveal">
       <p>Data sourced from AfDB, IFC, World Bank, AFC, BII, and major African capital markets. Updated regularly.</p>
@@ -1071,16 +1077,14 @@ footer { background: var(--color-dark); padding: 48px 0; }
   // Sort by date descending
   mwData.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-  // Show top 6
-  const grid = document.getElementById('mw-grid');
-  if (!grid) return;
-  const show = mwData.slice(0, 6);
+  const track = document.getElementById('mw-track');
+  if (!track) return;
 
-  show.forEach(item => {
+  function buildCard(item) {
     const sourceClass = item.source.toLowerCase().replace(/\s+/g, '-');
     const dateStr = new Date(item.date + 'T00:00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
     const card = document.createElement('div');
-    card.className = 'mw-card reveal';
+    card.className = 'mw-card';
     card.innerHTML =
       '<div class="mw-card-header">' +
         '<span class="mw-source ' + sourceClass + '">' + item.source + '</span>' +
@@ -1094,8 +1098,12 @@ footer { background: var(--color-dark); padding: 48px 0; }
         '<span class="mw-tag country">' + item.country + '</span>' +
         '<span class="mw-tag">' + item.tag + '</span>' +
       '</div>';
-    grid.appendChild(card);
-  });
+    return card;
+  }
+
+  // Build cards twice for seamless loop
+  mwData.forEach(item => track.appendChild(buildCard(item)));
+  mwData.forEach(item => track.appendChild(buildCard(item)));
 })();
 
 // Navbar scroll
