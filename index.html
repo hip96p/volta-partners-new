@@ -343,6 +343,49 @@ footer { background: var(--color-dark); padding: 48px 0; }
 /* Section heading hover for case studies */
 .case-studies h2 { transition: color 0.3s; }
 
+/* ========== MARKET WATCH ========== */
+.market-watch { background: var(--color-charcoal); position: relative; overflow: hidden; }
+.market-watch::before {
+  content: ''; position: absolute; inset: 0; opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M30 0v60M0 30h60' stroke='white' stroke-width='0.5'/%3E%3C/svg%3E");
+}
+.market-watch .container { position: relative; }
+.market-watch .section-label span { color: var(--color-sunglow); }
+.market-watch h2 { color: var(--color-white); font-size: 2rem; margin-bottom: 16px; }
+@media (min-width: 1024px) { .market-watch h2 { font-size: 2.5rem; } }
+.market-watch > .container > p { color: rgba(255,255,255,0.5); max-width: 600px; margin-bottom: 48px; }
+.mw-grid { display: grid; gap: 20px; }
+@media (min-width: 768px) { .mw-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1024px) { .mw-grid { grid-template-columns: repeat(3, 1fr); } }
+.mw-card {
+  background: rgba(255,255,255,0.06); border-radius: 12px; padding: 28px;
+  border: 1px solid rgba(255,255,255,0.08); transition: all 0.3s;
+  display: flex; flex-direction: column; cursor: default;
+}
+.mw-card:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.15); transform: translateY(-3px); }
+.mw-card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; gap: 12px; }
+.mw-source {
+  font-family: var(--font-heading); font-size: 0.7rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em; padding: 3px 10px;
+  border-radius: 4px; white-space: nowrap; flex-shrink: 0;
+}
+.mw-source.afdb { background: rgba(0,120,161,0.2); color: #4dc9f6; }
+.mw-source.ifc { background: rgba(9,129,74,0.2); color: #2dd47a; }
+.mw-source.afc { background: rgba(255,202,58,0.2); color: #FFCA3A; }
+.mw-source.world-bank { background: rgba(0,120,161,0.2); color: #4dc9f6; }
+.mw-source.bii { background: rgba(128,0,255,0.15); color: #b794f4; }
+.mw-source.other { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.6); }
+.mw-date { color: rgba(255,255,255,0.35); font-size: 0.8rem; white-space: nowrap; }
+.mw-card h3 { color: var(--color-white); font-size: 1rem; line-height: 1.4; margin-bottom: 10px; flex-grow: 1; }
+.mw-card p { color: rgba(255,255,255,0.5); font-size: 0.875rem; line-height: 1.6; margin-bottom: 16px; }
+.mw-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; }
+.mw-tag { font-size: 0.7rem; padding: 3px 10px; border-radius: 999px; font-weight: 500; background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.5); }
+.mw-tag.deal-size { background: rgba(9,129,74,0.25); color: #2dd47a; font-weight: 600; font-family: var(--font-heading); }
+.mw-tag.sector { background: rgba(0,120,161,0.2); color: #7dd3fc; }
+.mw-tag.country { background: rgba(255,202,58,0.15); color: #FFCA3A; }
+.mw-footer { text-align: center; margin-top: 40px; }
+.mw-footer p { color: rgba(255,255,255,0.35); font-size: 0.8rem; font-style: italic; }
+
 /* ========== CASE STUDY MODAL ========== */
 .case-modal-overlay {
   position: fixed; inset: 0; background: rgba(26,42,51,0.7); z-index: 200;
@@ -386,6 +429,7 @@ footer { background: var(--color-dark); padding: 48px 0; }
         <a href="#about">About</a>
         <a href="#services">Services</a>
         <a href="#case-studies">Case Studies</a>
+        <a href="#market-watch">Market Watch</a>
         <a href="#experts">Team</a>
         <a href="#contact" class="nav-cta">Get in Touch</a>
       </div>
@@ -397,6 +441,7 @@ footer { background: var(--color-dark); padding: 48px 0; }
       <a href="#about">About</a>
       <a href="#services">Services</a>
       <a href="#case-studies">Case Studies</a>
+      <a href="#market-watch">Market Watch</a>
       <a href="#experts">Team</a>
       <a href="#contact">Get in Touch</a>
     </div>
@@ -762,6 +807,26 @@ footer { background: var(--color-dark); padding: 48px 0; }
   </div>
 </section>
 
+<!-- ===================== MARKET WATCH ===================== -->
+<section id="market-watch" class="market-watch">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">
+        <div class="accent-line" style="background:var(--color-sunglow);"></div>
+        <span>Market Watch</span>
+      </div>
+      <h2>Latest investment signals<br>across Africa.</h2>
+      <p>Tracking deal flow, project approvals, and capital commitments from Africa's leading development finance institutions and capital markets.</p>
+    </div>
+    <div class="mw-grid" id="mw-grid">
+      <!-- Cards populated by JS -->
+    </div>
+    <div class="mw-footer reveal">
+      <p>Data sourced from AfDB, IFC, World Bank, AFC, BII, and major African capital markets. Updated regularly.</p>
+    </div>
+  </div>
+</section>
+
 <!-- ===================== EXPERTS ===================== -->
 <section id="experts" class="experts">
   <div class="container">
@@ -888,6 +953,7 @@ footer { background: var(--color-dark); padding: 48px 0; }
         <a href="#about">About</a>
         <a href="#services">Services</a>
         <a href="#case-studies">Case Studies</a>
+        <a href="#market-watch">Market Watch</a>
         <a href="#experts">Team</a>
         <a href="#contact">Contact</a>
       </div>
@@ -981,6 +1047,51 @@ footer { background: var(--color-dark); padding: 48px 0; }
   }, 2400);
 
   window.addEventListener('resize', () => { measureAll(); spinner.style.width = widths[current] + 'px'; });
+})();
+
+// Market Watch data (synced from Notion CMS)
+(function() {
+  const mwData = [
+    { headline: 'AFC Acts as Financial Adviser on Landmark Power Sector Bond Issuance Under Nigeria\'s Presidential Reforms', source: 'AFC', date: '2026-02-15', country: 'Nigeria', sector: 'Power & Energy', dealSize: '', summary: 'Africa Finance Corporation served as Co-Financial Adviser on the successful issuance of bonds under Nigeria\'s Presidential Power Sector Financial Reforms Programme.', tag: 'Bond Issuance', featured: true },
+    { headline: 'AfDB Approves $200M to Boost Nigeria\'s Agricultural Production and Reduce Food Imports', source: 'AfDB', date: '2026-02-20', country: 'Nigeria', sector: 'Agriculture', dealSize: '$200M', summary: 'The African Development Bank Group approved a $200 million loan to finance the second phase of Nigeria\'s National Agricultural Growth Scheme.', tag: 'Project Approval', featured: true },
+    { headline: 'IFC Announces Projects Supporting MSMEs, Green Initiatives, and Healthcare in Egypt and East Africa', source: 'IFC', date: '2026-01-20', country: 'Kenya', sector: 'Healthcare', dealSize: '', summary: 'IFC announced new projects to support micro, small and medium enterprises, green initiatives, and healthcare across Egypt and East Africa.', tag: 'Blended Finance', featured: false },
+    { headline: 'FG Gold Achieves $330M Financial Close for Sierra Leone\'s Baomahun Gold Mine', source: 'AFC', date: '2025-12-10', country: 'Pan-African', sector: 'Mining & Resources', dealSize: '$330M', summary: 'FG Gold achieved financial close on US$330 million Senior Debt Financing with AFC and Afreximbank for Sierra Leone\'s flagship gold mine.', tag: 'Debt', featured: false },
+    { headline: 'AFC Closes Landmark $524M Dual-Currency Samurai Term Loan Facility', source: 'AFC', date: '2025-12-05', country: 'Pan-African', sector: 'Financial Services', dealSize: '$524M', summary: 'Africa Finance Corporation closed a landmark dual-currency Samurai term loan facility, diversifying its funding sources across Asian capital markets.', tag: 'Debt', featured: false },
+    { headline: 'EIB Backs AFC $750 Million Climate Resilient Infrastructure Fund', source: 'AFC', date: '2025-11-20', country: 'Pan-African', sector: 'Climate & Green', dealSize: '$750M', summary: 'The European Investment Bank committed to join AFC in financing a $750 million Infrastructure Climate Resilient Fund.', tag: 'Fund Launch', featured: true },
+    { headline: 'IFC Announces $310M in Investments to Support African SMEs and Job Creation', source: 'IFC', date: '2025-11-05', country: 'Pan-African', sector: 'Financial Services', dealSize: '$310M', summary: 'IFC announced investments totaling $310 million to support the growth of smaller businesses and job creation across several African countries.', tag: 'Debt', featured: false },
+    { headline: 'ARISE IIP Completes Landmark $700M Capital Raise for African Infrastructure', source: 'AFC', date: '2025-10-15', country: 'Pan-African', sector: 'Infrastructure', dealSize: '$700M', summary: 'ARISE IIP completed a landmark US$700 million capital raise, one of the largest private infrastructure transactions in Africa to date.', tag: 'Equity', featured: true },
+    { headline: 'IFC, AfDB Launch $300M Zafiri Vehicle for Sub-Saharan Africa Energy Access', source: 'IFC', date: '2025-09-10', country: 'Pan-African', sector: 'Power & Energy', dealSize: '$300M+', summary: 'IFC, AfDB, and founding partners launched Zafiri, a new investment vehicle focused on expanding electricity and clean cooking access across sub-Saharan Africa.', tag: 'Fund Launch', featured: true },
+    { headline: 'AfDB and AIIB Join Forces on $300M Clean Energy Programme for Rwanda', source: 'AfDB', date: '2025-07-15', country: 'Rwanda', sector: 'Power & Energy', dealSize: '$300M', summary: 'The AfDB approved a $200 million loan for Rwanda\'s Energy Sector programme, with $100 million co-financing from the AIIB.', tag: 'Blended Finance', featured: false }
+  ];
+
+  // Sort by date descending
+  mwData.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+  // Show top 6
+  const grid = document.getElementById('mw-grid');
+  if (!grid) return;
+  const show = mwData.slice(0, 6);
+
+  show.forEach(item => {
+    const sourceClass = item.source.toLowerCase().replace(/\s+/g, '-');
+    const dateStr = new Date(item.date + 'T00:00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+    const card = document.createElement('div');
+    card.className = 'mw-card reveal';
+    card.innerHTML =
+      '<div class="mw-card-header">' +
+        '<span class="mw-source ' + sourceClass + '">' + item.source + '</span>' +
+        '<span class="mw-date">' + dateStr + '</span>' +
+      '</div>' +
+      '<h3>' + item.headline + '</h3>' +
+      '<p>' + item.summary + '</p>' +
+      '<div class="mw-tags">' +
+        (item.dealSize ? '<span class="mw-tag deal-size">' + item.dealSize + '</span>' : '') +
+        '<span class="mw-tag sector">' + item.sector + '</span>' +
+        '<span class="mw-tag country">' + item.country + '</span>' +
+        '<span class="mw-tag">' + item.tag + '</span>' +
+      '</div>';
+    grid.appendChild(card);
+  });
 })();
 
 // Navbar scroll
